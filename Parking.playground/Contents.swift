@@ -117,6 +117,8 @@ enum TypeOfVehicle {
 
 var parking  = Parking()
 
+// Creo los vehiculos
+
 let car = Vehicle(plate: "8096 VIX", type: TypeOfVehicle.car,checkInTime: Date(), discountCard: "DISCOUNT_CARD_001")
 let moto = Vehicle(plate: "1843 WID", type: TypeOfVehicle.bike, checkInTime: Date(), discountCard: nil)
 let miniBus = Vehicle(plate: "6278 FUF", type: TypeOfVehicle.miniBus, checkInTime: Date(), discountCard:nil)
@@ -142,11 +144,14 @@ let moto5 = Vehicle(plate: "0563 GFF", type: TypeOfVehicle.bike, checkInTime: Da
 let miniBus5 = Vehicle(plate: "2936 BWQ", type: TypeOfVehicle.miniBus, checkInTime: Date(), discountCard:nil)
 let bus5 = Vehicle(plate: "9774 PUG", type: TypeOfVehicle.bus,checkInTime: Date(), discountCard: "DISCOUNT_CARD_010")
 
-//No more space in the parking, this vehicle is going to fail the check in process
+//No hay mas espacio este vehiculo no entra
 
 let car6 = Vehicle(plate: "3984 LEA", type: TypeOfVehicle.car,checkInTime: Date(), discountCard: "DISCOUNT_CARD_001")
 
-// Parking
+// Agrego los vehiculos al parking
+
+print("Check in process: \n")
+
 parking.checkInVehicle(car, onFinish: { result in result ? print("Welcome to AlkeParking!") : print("Sorry, the check-in failed")} )
 parking.checkInVehicle(moto, onFinish: { result in result ? print("Welcome to AlkeParking!") : print("Sorry, the check-in failed")} )
 parking.checkInVehicle(miniBus, onFinish: { result in result ? print("Welcome to AlkeParking!") : print("Sorry, the check-in failed")} )
@@ -174,15 +179,24 @@ parking.checkInVehicle(bus5, onFinish: { result in result ? print("Welcome to Al
 
 parking.checkInVehicle(bus, onFinish: { result in result ? print("Welcome to AlkeParking!") : print("Sorry, the check-in failed")} )
 
-
+// Muestro los vehiculos
+print("----------------------------------------------------------- \n" )
 parking.listVehicles()
 
+// Check out de vehiculos
+print("----------------------------------------------------------- \n" )
+
+print("Check out process:")
 parking.checkOutVehicle(car, onSuccess: {fee in print("The fee is \(fee)")}, onError:{ print("Sorry, the check-out failed")})
 parking.checkOutVehicle(moto, onSuccess: {fee in print("The fee is \(fee)")}, onError:{ print("Sorry, the check-out failed")})
 parking.checkOutVehicle(miniBus, onSuccess: {fee in print("The fee is \(fee)")}, onError:{ print("Sorry, the check-out failed")})
 
+print("----------------------------------------------------------- \n")
 
-
+//Vuelo a listar
 parking.listVehicles()
+
+//Ganancias
+print("")
 parking.showProfit()
 
